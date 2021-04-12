@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+        <div class="container w-25 mt-5 p-4 shadow">
+            <form  method="post" th:action="@{/login}">
+                <div th:if="${param.error}" class="alert alert-danger">user undefined</div>
+                <div th:if="${param.logout}" class="alert alert-info">you have been logged out </div>
+                <div class="form-group">
+                    <label for="username">Email address</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div>
+</body>
+
+</html>

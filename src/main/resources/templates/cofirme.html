@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template1">
+
+<head>
+    <meta charset="utf-8">
+    <title>insert patients01</title>
+</head>
+<!--
+* if we change the name of the input we can note get the value from the object that we ^passed in the module
+* 	<input type="date" ****name="dateNaissance"****
+ 						***th:value="${patient.dateNaissance} "***** >
+
+
+
+-->
+<body>
+<div layout:fragment="content" class="d-flex justify-content-center m-4">
+    <div class="card shadow-sm w-50">
+
+        <div class="card-header d-flex justify-content-between">
+             <a class="ui-icon-circle-close" th:href="@{index}">cancel</a>
+            <div class="text-body"><span th:text="${type}"></span> success</div>
+        </div>
+
+        <div class="card-body">
+            <div class="container p-5 ">
+
+                    <div class="form-group">
+                        <label class="control-label">ID:</label>
+                        <label type="text" name="id"  class="form-control" th:text="${patient.id}"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Name:</label>
+                        <label type="text" name="nom"  class="form-control" th:text="${patient.nom}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date de Naissance:</label>
+                        <label type="text" name="dateNaissance"  class="form-control" th:text="${patient.dateNaissance}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Score:</label>
+                        <label type="text" name="score"  class="form-control" th:text="${patient.score}"></label>
+                    </div>
+                    <div class="form-group  ">
+                        <label class="control-label">Malade:</label>
+                        <label type="text" name="malade"  class="form-control" th:text="${patient.malade}"></label>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+</html>

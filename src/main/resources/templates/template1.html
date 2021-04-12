@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<meta charset="utf-8">
+<title>Patients 00</title>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.1.3/css/bootstrap.min.css"></link>
+<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" th:href="@{index}">Patients</a>
+
+		<!-- Links -->
+		<ul class="navbar-nav d-flex justify-content-between">
+			<li class="nav-item"><a class="nav-link" th:href="@{index}">list OF
+					patients</a></li>
+
+			<!-- Dropdown -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown"> actions </a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{formPatient}">ajouter</a> <a
+						class="dropdown-item" th:href="@{test}">chercher</a>
+				</div></li>
+			</ul>
+			<ul class="navbar-nav ml-auto px-4">	
+			<!-- Dropdown -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown"> <span sec:authentication="name"></span> </a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/login?logout}">logout</a> <a
+							class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{login}">login</a>
+				</div></li>	
+		</ul>
+	</nav>
+
+	<section layout:fragment="content"></section>
+</body>
+</html>

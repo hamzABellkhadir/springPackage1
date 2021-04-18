@@ -49,7 +49,7 @@ public class SecurityController {
         user.setPassword(b.encode(user.getPassword()));
 
         this.userInter.save(user);
-        this.userRoleInter.save(new UsersRoles(user.getUsername(),"USER"));
+        this.userRoleInter.save(new UsersRoles(null,user.getUsername(),"USER"));
         return "redirect:/createAcount?saved";
     }
 

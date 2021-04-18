@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
@@ -17,6 +18,9 @@ public class SecurityImpl extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // we have 3 method to do the authentication => inmemoryauthentication , jdbc authentocation , and using the UserDetailService
@@ -26,12 +30,15 @@ public class SecurityImpl extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("admin").password(cryptPasswordEncoder.encode("1234")).roles("USER","ADMIN");*/
 
 //        jdbc authentication => connection to the db and make shure that the users exist
-        auth.jdbcAuthentication()
+       /* auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username as principal , password as credentials, active from users where username =?")
                 .authoritiesByUsernameQuery("select username as principal, role as role from users_roles where username=?")
                 .rolePrefix("ROLE_")
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder());*/
+        // using UserDetailsService
+
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
